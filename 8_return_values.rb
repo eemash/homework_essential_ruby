@@ -4,7 +4,7 @@
 # Eventually, I want to print the STANDARD DEVIATION of a set of numbers.
 # In other words, if I have a set of numbers like this:
 
-#     first_dataset = [93, 65, 87, 68, 2, 64, 36, 96, 45, 47]
+ first_dataset = [93, 65, 87, 68, 2, 64, 36, 96, 45, 47]
 
 # Then I want to be able to do something like this:
 
@@ -27,28 +27,36 @@
 #   - we add it to the running total
 #  - after we've looked at every number, the running total is the sum
 
+
+
 def sum(list_of_numbers)
-  running_total = 0
+
+ running_total = 0
+ 
   list_of_numbers.each do |number|
+
     running_total = running_total + number
   end
 
   return running_total
 end
 
+puts sum(first_dataset)
+
 # MEAN
 # ====
 # To find the mean of a set,
 #  - we sum up all the elements
 #  - then we divide the sum by the number of elements in the set
-
-def mean(list_of_numbers)
   # Let's re-use the work we did above in the sum method
 
-  # ====================
-  # Your code goes here.
-  # ====================
+  def mean(list_of_numbers)
+ 
+sum(list_of_numbers)/(list_of_numbers.length)
 end
+
+puts mean(first_dataset)
+
 
 # VARIANCE
 # ========
@@ -59,13 +67,34 @@ end
 #   - we square the difference
 #  - the variance is the mean of the squared differences
 
-def variance(list_of_numbers)
-  # Let's re-use the work we did above in the mean method
 
-  # ====================
-  # Your code goes here.
-  # ====================
+
+def variance(list_of_numbers)
+  running_total = 0
+  list_of_numbers.each do |number|
+  running_total = running_total + number
+  end
+
+  quantity_total = 0 
+  list_of_numbers.each do |number|
+  quantity_total = quantity_total + number/number
+  end
+  output = running_total / quantity_total
+
+  sum_squares = 0
+  list_of_numbers.each do |number|
+  difference_total = output - number
+  square_difference = difference_total * difference_total
+  sum_squares = sum_squares + square_difference
+  end
+  variance_total = sum_squares / quantity_total
+  puts variance_total
 end
+
+puts "The variance is "
+variance(first_dataset)
+puts""
+
 
 # STANDARD DEVIATION
 # ==================
@@ -73,10 +102,33 @@ end
 #  - take the square root of the variance
 
 def standard_deviation(list_of_numbers)
-  # ====================
-  # Your code goes here.
-  # ====================
+ 
+  running_total = 0
+  list_of_numbers.each do |number|
+  running_total = running_total + number
+  end
+
+  quantity_total = 0 
+  list_of_numbers.each do |number|
+  quantity_total = quantity_total + number/number
+  end
+  output = running_total / quantity_total
+
+  sum_squares = 0
+  list_of_numbers.each do |number|
+  difference_total = output - number
+  square_difference = difference_total * difference_total
+  sum_squares = sum_squares + square_difference
+  end
+  variance_total = sum_squares / quantity_total
+  standard_dev = variance_total**0.5
+  return standard_dev
 end
+
+# puts "The standard deviation is "
+# standard_deviation(first_dataset)
+# puts""
+
 
 
 # Finally, everything above allows us to do:
